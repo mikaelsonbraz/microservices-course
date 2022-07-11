@@ -1,0 +1,11 @@
+sprinng:
+  application:
+    name: cambio-service
+
+server:
+  port: 8000
+
+spring:
+  cloud:
+    config:
+      enabled: false
