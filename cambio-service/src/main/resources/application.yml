@@ -1,6 +1,9 @@
-sprinng:
+spring:
   application:
     name: cambio-service
+  cloud:
+    config:
+      enabled: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC
@@ -21,11 +24,6 @@ sprinng:
 
 server:
   port: 8000
-
-spring:
-  cloud:
-    config:
-      enabled: false
 
 management:
   endpoints:
