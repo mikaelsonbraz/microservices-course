@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: book-service
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 8100
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'
