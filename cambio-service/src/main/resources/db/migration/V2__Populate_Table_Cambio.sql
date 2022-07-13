@@ -1,4 +1,5 @@
 ﻿INSERT INTO `cambio` (`from_currency`, `to_currency`, `conversion_factor`) VALUES
+                     ('USD', 'USD', 1),
                      ('USD', 'BRL', 5.73),
 					 ('USD', 'EUR', 0.84),
 					 ('USD', 'GBP', 0.73),
