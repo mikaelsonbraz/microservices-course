@@ -16,14 +16,16 @@ public class ApiGatewayConfig {
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder routeLocatorBuilder) {
 
-        Function<PredicateSpec, Buildable<Route>> function =  p -> p.path("/get")
-                .filters(f -> f.addRequestHeader("Hello", "World")
-                                .addRequestParameter("Hello", "Nordeste"))
-                .uri("http://httpbin.org:80");
-
         return routeLocatorBuilder
                 .routes()
-                .route(function)
+                .route(p -> p.path("/get")
+                        .filters(f -> f.addRequestHeader("Hello", "World")
+                                .addRequestParameter("Hello", "Nordeste"))
+                        .uri("http://httpbin.org:80"))
+                .route(p -> p.path("/cambio-service/**")
+                        .uri("lb://cambio-service"))
+                .route(p -> p.path("/book-service/**")
+                        .uri("lb://book-service"))
                 .build();
     }
 }
