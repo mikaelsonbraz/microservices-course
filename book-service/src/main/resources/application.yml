@@ -24,6 +24,12 @@ spring:
     user: root
     password: mysql
 
+resilience4j:
+  retry:
+    instances:
+      book-service:
+        max-attempts: 8
+
 eureka:
   client:
     service-url:
