@@ -16,12 +16,17 @@ public class TesteResilienceController {
     private Logger logger = LoggerFactory.getLogger(TesteResilienceController.class);
 
     @GetMapping("/teste")
-    @Retry(name = "book-service")
+    @Retry(name = "book-service", fallbackMethod = "fallbackMethod")
     public String testeReesilience(){
         logger.info("Request for test is received!");
         ResponseEntity<String> response = new RestTemplate()
                 .getForEntity("http://localhost:8080/teste", String.class);
 
         return response.getBody();
+    }
+
+    public String fallbackMethod(Exception exception){
+        logger.info("Fallback Method called");
+        return "Fallback Method";
     }
 }
