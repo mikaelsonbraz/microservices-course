@@ -28,7 +28,7 @@ resilience4j:
   retry:
     instances:
       book-service:
-        max-attempts: 8
+        max-attempts: 4
         wait-duration: 2s
 
 eureka:
