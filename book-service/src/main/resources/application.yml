@@ -29,6 +29,7 @@ resilience4j:
     instances:
       book-service:
         max-attempts: 8
+        wait-duration: 2s
 
 eureka:
   client:
