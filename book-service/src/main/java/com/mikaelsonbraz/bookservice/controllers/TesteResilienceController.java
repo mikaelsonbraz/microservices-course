@@ -1,6 +1,7 @@
 package com.mikaelsonbraz.bookservice.controllers;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +19,16 @@ public class TesteResilienceController {
 
     @GetMapping("/teste")
     //@Retry(name = "book-service", fallbackMethod = "fallbackMethod")
-    @CircuitBreaker(name = "default", fallbackMethod = "fallbackMethod")
-    public String testeReesilience(){
+    //@CircuitBreaker(name = "book-service", fallbackMethod = "fallbackMethod")
+    @RateLimiter(name = "book-service")
+    public String testeResilience(){
         logger.info("Request for test is received!");
+        /*
         ResponseEntity<String> response = new RestTemplate()
                 .getForEntity("http://localhost:8080/teste", String.class);
-
         return response.getBody();
+         */
+        return "Teste Ratelimiter - 2 for period, 10s for refresh period";
     }
 
     public String fallbackMethod(Exception exception){

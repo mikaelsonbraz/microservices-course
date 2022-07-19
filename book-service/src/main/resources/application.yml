@@ -30,6 +30,12 @@ resilience4j:
       book-service:
         max-attempts: 4
         wait-duration: 2s
+  ratelimiter:
+    instances:
+      book-service:
+        limit-for-period: 2
+        limit-refresh-period: 10s
+
 
 eureka:
   client:
