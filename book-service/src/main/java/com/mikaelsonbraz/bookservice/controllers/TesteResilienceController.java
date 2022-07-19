@@ -1,5 +1,6 @@
 package com.mikaelsonbraz.bookservice.controllers;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -20,7 +21,8 @@ public class TesteResilienceController {
     @GetMapping("/teste")
     //@Retry(name = "book-service", fallbackMethod = "fallbackMethod")
     //@CircuitBreaker(name = "book-service", fallbackMethod = "fallbackMethod")
-    @RateLimiter(name = "book-service")
+    //@RateLimiter(name = "book-service")
+    @Bulkhead(name = "book-service")
     public String testeResilience(){
         logger.info("Request for test is received!");
         /*

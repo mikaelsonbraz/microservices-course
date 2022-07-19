@@ -35,6 +35,10 @@ resilience4j:
       book-service:
         limit-for-period: 2
         limit-refresh-period: 10s
+  bulkhead:
+    instances:
+      book-service:
+        max-concurrent-calls: 10
 
 
 eureka:
