@@ -40,6 +40,9 @@ resilience4j:
       book-service:
         max-concurrent-calls: 10
 
+springdoc:
+  api-docs:
+    path: book-service/v3/api-docs
 
 eureka:
   client:

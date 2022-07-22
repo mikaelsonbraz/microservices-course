@@ -22,6 +22,10 @@ spring:
     user: root
     password: mysql
 
+springdoc:
+  api-docs:
+    path: cambio-service/v3/api-docs
+
 eureka:
   client:
     service-url:
