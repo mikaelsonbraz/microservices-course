@@ -21,6 +21,9 @@ spring:
     schemas: cambio_service
     user: root
     password: mysql
+  sleuth:
+    sampler:
+      probability: 1.0
 
 springdoc:
   api-docs:

@@ -23,6 +23,9 @@ spring:
     schemas: book_service
     user: root
     password: mysql
+  sleuth:
+    sampler:
+      probability: 1.0
 
 resilience4j:
   retry:
