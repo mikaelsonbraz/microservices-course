@@ -8,7 +8,19 @@ services:
     networks:
       - mikaelsonbraz-network
 
-  zipkin:
+  api-gateway:
+    image: mikaelsonbraz/api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - 8765:8765
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+    networks:
+      - mikaelsonbraz-network
+
+  zipkin-server:
     image: openzipkin/zipkin:2.23.2
     ports:
       - 9411:9411
