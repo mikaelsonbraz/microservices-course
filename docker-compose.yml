@@ -20,6 +20,45 @@ services:
     networks:
       - mikaelsonbraz-network
 
+  book-db:
+    image: mysql:5.7.22
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: admin123
+      MYSQL_DATABASE: book_service
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_TCP_PORT: 3310
+    ports:
+      - 3310:3310
+    expose:
+      - 3310
+    networks:
+      - mikaelsonbraz-network
+
+  cambio-db:
+    image: mysql:5.7.22
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: admin123
+      MYSQL_DATABASE: cambio_service
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_TCP_PORT: 3308
+    ports:
+      - 3308:3308
+    expose:
+      - 3308
+    networks:
+      - mikaelsonbraz-network
+
+
   zipkin-server:
     image: openzipkin/zipkin:2.23.2
     ports:
