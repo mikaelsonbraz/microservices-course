@@ -1,16 +1,10 @@
 name: Continuous Integgration withh Github
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 on:
   schedule:
     - cron: '36 0 * * *'
   push:
     branches: [ "master" ]
-    # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "master" ]
@@ -29,8 +23,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
     steps:
@@ -42,3 +34,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.4.1
+        with:
+          java-version: '17'
+
+      - name: Build Eureka Naming Server container image
+        working-directory: ./naming-server
+        run: .mvnw/ spring-boot:build-image -DskipTests
