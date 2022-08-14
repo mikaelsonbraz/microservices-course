@@ -15,7 +15,7 @@ services:
       - 15672:15672
     networks:
       - mikaelsonbraz-network
-
+      -
   zipkin-server:
     image: openzipkin/zipkin:2.23.2
     restart: on-failure
@@ -27,6 +27,7 @@ services:
       RABBIT_URI: amqp://guest:guest@rabbit-mq:5672
     networks:
       - mikaelsonbraz-network
+
 
 
   api-gateway:
@@ -137,7 +138,7 @@ services:
     depends_on:
       - naming-server
       - cambio-db
-      - rabbit-m
+      - rabbit-mq
 
 
 networks:
