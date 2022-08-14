@@ -15,7 +15,7 @@ services:
       - 15672:15672
     networks:
       - mikaelsonbraz-network
-      -
+
   zipkin-server:
     image: openzipkin/zipkin:2.23.2
     restart: on-failure
